@@ -4,9 +4,12 @@ import "./todo.scss"
 export default class Todo extends  React.Component{
     constructor(props){
         super(props);
+        this.add = this.add.bind(this);
+        this.nameChange = this.nameChange.bind(this);
+        this.openBox = this.openBox.bind(this);
         this.state = { name : "ali" , users : [], box : false}
     }
-    add = () =>{
+    add () {
         const name = this.state.name;
         const newUsers = this.state.users
         newUsers.push(name)
@@ -21,7 +24,7 @@ export default class Todo extends  React.Component{
         })
     }
     
-    openBox = () =>{
+    openBox () {
         this.setState({
             box : true
         })
