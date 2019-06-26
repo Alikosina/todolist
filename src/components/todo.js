@@ -7,7 +7,7 @@ export default class Todo extends  React.Component{
         this.add = this.add.bind(this);
         this.nameChange = this.nameChange.bind(this);
         this.openBox = this.openBox.bind(this);
-        this.state = { name : "ali" , users : [], box : false}
+        this.state = { name : "" , users : [], box : false}
     }
     add () {
         const name = this.state.name;
@@ -20,7 +20,7 @@ export default class Todo extends  React.Component{
 
      nameChange(e) {
         this.setState({
-            name : e
+            name : e.target.value
         })
     }
     
@@ -37,8 +37,8 @@ export default class Todo extends  React.Component{
           });
         const box = this.state.box && (
             <div>
-                  <input onChange={this.nameChange}/>
-                  <div onClick={this.add}> add </div>
+                  <input  onChange={this.nameChange}/>
+                 
             </div>
         )
         return(<div>
@@ -46,6 +46,7 @@ export default class Todo extends  React.Component{
 
             <div onClick={this.openBox}> Добавить </div>
             <div> {box} </div>
+            <div onClick={this.add}> add </div>
             
         </div>)
     }
