@@ -14,6 +14,13 @@ export default class Todo extends  React.Component{
             users : newUsers
         })
     }
+
+     nameChange(e) {
+        this.setState({
+            name : e
+        })
+    }
+    
     openBox = () =>{
         this.setState({
             box : true
@@ -26,14 +33,17 @@ export default class Todo extends  React.Component{
             return name;
           });
         const box = this.state.box && (
-            <div className="box"> hello </div>
+            <div>
+                  <input onChange={this.nameChange}/>
+                  <div onClick={this.add}> add </div>
+            </div>
         )
         return(<div>
             <div> {list} </div>
 
             <div onClick={this.openBox}> Добавить </div>
             <div> {box} </div>
-            <div onClick={this.add}> add </div>
+            
         </div>)
     }
 }
