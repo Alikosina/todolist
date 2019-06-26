@@ -7,15 +7,20 @@ export default class Todo extends  React.Component{
     }
     add = () =>{
         const name = this.state.name;
-        const newUsers = this.state.users.push(name)
+        const newUsers = this.state.users
+        newUsers.push(name)
         this.setState({
             users : newUsers
         })
     }
     render(){
         console.log(this.state.users);
+        const users = this.state.users; 
+        const list = users.map(function(name) {
+            return name;
+          });
         return(<div>
-            <div> {this.state.users} </div>
+            <div> {list} </div>
 
             <div onClick={this.add}> add </div>
         </div>)
