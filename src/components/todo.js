@@ -9,7 +9,9 @@ export default class Todo extends  React.Component{
         this.add = this.add.bind(this);
         this.nameChange = this.nameChange.bind(this);
         this.openBox = this.openBox.bind(this);
-        this.state = { name : {} , users : [], box : false}
+        this.deleteId = this.deleteId.bind(this);
+        this.done = this.done.bind(this);
+        this.state = { name : {} ,  users : [], box : false}
     }
     add () {
         const name = this.state.name;
@@ -25,12 +27,22 @@ export default class Todo extends  React.Component{
         const newUsers = users.filter(function(el){
             return el.id != id
         })
+        this.setState({
+            users : newUsers
+        })
+    }
+
+    done (id) {
+        const users = this.state.users;
+        const newUsers = users.find(x => x.id === id);
+        newUsers.done = true;
     }
 
      nameChange(e) {
         this.setState({
             name : {
                 id : Math.random(),
+                done : false ,
                 text : e.target.value
             }
             // name : e.target.value + ' '
@@ -45,13 +57,14 @@ export default class Todo extends  React.Component{
     render(){
         console.log(this.state.users);
         const users = this.state.users; 
-        const task = this.state.task && (
-            <div>
-
+        const done  = this.state.users.done && (
+            <div className="done">
+                {this.state.users.text}
             </div>
         )
-        const list = users.map(function(name) {
-            return (<div>{name.text} <span onClick={() => this.deleteId(name.id)}> V </span> </div> );
+        
+        const list = users.map((name) => {
+            return (<div>{name.text} <span onClick={() => this.deleteId(name.id)}> V </span> <span onClick={() => this.done(name.id)}> D </span> </div> );
           });
         const box = this.state.box && (
             <div>
@@ -61,6 +74,7 @@ export default class Todo extends  React.Component{
         )
         return(<div>
             <div> {list} </div>
+            <div> {done} </div>
 
             <div onClick={this.openBox}> Добавить </div>
             <div> {box} </div>
