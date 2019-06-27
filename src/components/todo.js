@@ -20,6 +20,13 @@ export default class Todo extends  React.Component{
         })
     }
 
+    deleteId (id) {
+        const users = this.state.users;
+        const newUsers = users.filter(function(el){
+            return el.id != id
+        })
+    }
+
      nameChange(e) {
         this.setState({
             name : {
@@ -44,7 +51,7 @@ export default class Todo extends  React.Component{
             </div>
         )
         const list = users.map(function(name) {
-            return (<div>{name.text} <span> V </span> </div> );
+            return (<div>{name.text} <span onClick={() => this.deleteId(name.id)}> V </span> </div> );
           });
         const box = this.state.box && (
             <div>
