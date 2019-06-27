@@ -1,5 +1,7 @@
 import * as React from "react";
 import "./todo.scss"
+// import { Button } from 'react-toolbox/lib/button';
+import { Button } from 'semantic-ui-react'
 
 export default class Todo extends  React.Component{
     constructor(props){
@@ -7,7 +9,7 @@ export default class Todo extends  React.Component{
         this.add = this.add.bind(this);
         this.nameChange = this.nameChange.bind(this);
         this.openBox = this.openBox.bind(this);
-        this.state = { name : "" , users : [], box : false}
+        this.state = { name : {} , users : [], box : false}
     }
     add () {
         const name = this.state.name;
@@ -20,7 +22,11 @@ export default class Todo extends  React.Component{
 
      nameChange(e) {
         this.setState({
-            name : e.target.value
+            name : {
+                id : Math.random(),
+                text : e.target.value
+            }
+            // name : e.target.value + ' '
         })
     }
     
@@ -32,8 +38,13 @@ export default class Todo extends  React.Component{
     render(){
         console.log(this.state.users);
         const users = this.state.users; 
+        const task = this.state.task && (
+            <div>
+
+            </div>
+        )
         const list = users.map(function(name) {
-            return name;
+            return (<div>{name.text} <span> V </span> </div> );
           });
         const box = this.state.box && (
             <div>
@@ -46,7 +57,10 @@ export default class Todo extends  React.Component{
 
             <div onClick={this.openBox}> Добавить </div>
             <div> {box} </div>
-            <div onClick={this.add}> add </div>
+            
+            {/* <div onClick={this.add}> add </div> */}
+            <Button primary onClick={this.add}>Click</Button>
+            {/* <Button label='Primary Button' primary /> */}
             
         </div>)
     }
