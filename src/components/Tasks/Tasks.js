@@ -2,7 +2,7 @@ import * as React from "react";
 import "./Tasks.scss";
 
 
-export default class Tasks extends React.Component{
+export default class Tasks extends React.PureComponent{
     render(){
         return(
             <div className="tasks-item">

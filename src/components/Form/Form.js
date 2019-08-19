@@ -3,7 +3,7 @@ import { Button } from 'semantic-ui-react'
 
 
 
-export default class Form extends React.Component{
+export default class Form extends React.PureComponent{
     constructor(props){
         super(props);
         this.nameChange = this.nameChange.bind(this);
