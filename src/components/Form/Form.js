@@ -1,4 +1,4 @@
-import  React , {useState , memo} from "react";
+import  React , {useState , memo , useCallback} from "react";
 import { Button } from 'semantic-ui-react'
 
 const Form = (props) =>{
@@ -7,10 +7,16 @@ const Form = (props) =>{
     const nameChange = (e) => {
         setValue(e.target.value)
      }
-     const onClick = () => {
+
+     const onClick = useCallback(()=>{
         addState(value);
-       setValue('')
-    }
+        setValue('')
+     },[value])
+
+    //  const onClick = () => {
+    //     addState(value);
+    //    setValue('')
+    // }
     return(
         <div className='add-task'>
             <input className='inp' placeholder='Что нужно сделать' value={value} onChange={nameChange}/>
